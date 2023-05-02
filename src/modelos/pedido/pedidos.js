@@ -15,7 +15,12 @@ const Pedido = new Schema({
     Estado:{
         type : String, Enum: ['Creado', "Enviado", 'Aceptado', 'Recibido', 'En dirección', 'Realizado'],
         required: true
+    },
+    mensajero:{
+        type: Schema.Types.ObjectId, ref: 'Usuarios' ,
+        required: false
     }
+
 },
 { timestamps: true }
 )
