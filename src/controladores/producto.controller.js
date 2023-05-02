@@ -29,8 +29,17 @@ ProductoController.ProductoResgister = async (req, res) => {
 
 ProductoController.ProductoBuscarT = async (req, res) => {
     try{
-    const producto = await Producto.find() 
-    res.json(producto)
+    const productos = await Producto.find() 
+    const productosPorCategoria = {};
+
+    productos.forEach((producto) => {
+    if (!productosPorCategoria[producto.CategoriaR]) {
+    productosPorCategoria[producto.CategoriaR] = [];
+    }
+    productosPorCategoria[producto.CategoriaR].push(producto);
+    });
+
+    res.json(productosPorCategoria);
     } catch (err) {
     res.status(500).json(err);
     }
@@ -98,6 +107,71 @@ ProductoController.ProductoActualizar = async (req, res) => {
     }
 
     }    
+
+
+ProductoController.ProductoBuscarCat = async (req, res) => {
+        try{
+        const {CategoriaR, Restaurante} = req.body
+
+        const producto = await Producto.find() 
+
+        if(CategoriaR == null && Restaurante == null){
+
+            const productosPorCategoria = {};
+
+            producto.forEach((producto) => {
+            if (!productosPorCategoria[producto.CategoriaR]) {
+            productosPorCategoria[producto.CategoriaR] = [];
+            }
+            productosPorCategoria[producto.CategoriaR].push(producto);
+            });
+
+            res.json(productosPorCategoria)
+
+        }else if(CategoriaR == null && Restaurante != null){
+            const producto = await Producto.find({Restaurante:Restaurante})
+
+            const productosPorCategoria = {};
+            producto.forEach((producto) => {
+                if (!productosPorCategoria[producto.CategoriaR]) {
+                productosPorCategoria[producto.CategoriaR] = [];
+                }
+                productosPorCategoria[producto.CategoriaR].push(producto);
+                });
+    
+
+            res.json(productosPorCategoria)
+        }else if(Restaurante == null && CategoriaR!= null){
+            const producto = await Producto.find({CategoriaR:CategoriaR})
+
+            const productosPorCategoria = {};
+            producto.forEach((producto) => {
+                if (!productosPorCategoria[producto.CategoriaR]) {
+                productosPorCategoria[producto.CategoriaR] = [];
+                }
+                productosPorCategoria[producto.CategoriaR].push(producto);
+                });
+            
+            res.json(productosPorCategoria)
+        }else{
+            const producto = await Producto.find({CategoriaR,Restaurante})
+
+            const productosPorCategoria = {};
+            producto.forEach((producto) => {
+                if (!productosPorCategoria[producto.CategoriaR]) {
+                productosPorCategoria[producto.CategoriaR] = [];
+                }
+                productosPorCategoria[producto.CategoriaR].push(producto);
+                });
+            
+            res.json(productosPorCategoria)
+        }
+
+        } catch (err) {
+        res.status(500).json(err);
+        }
+
+    }
 
 
 module.exports = ProductoController

@@ -18,7 +18,7 @@ router.delete('/restaurante/borrar/:id', restauranteBorrar)
 
 router.patch('/restaurante/actualizar/:id', restauranteActualizar)
 
-router.get('/restaurante/BuscarC/:Categoria', restauranteBuscarCat)
+router.get('/restaurante/BuscarC/', restauranteBuscarCat)
 
 
 module.exports = router

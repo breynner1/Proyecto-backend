@@ -5,7 +5,8 @@ const {ProductoResgister,
     ProductoBuscarT,
     ProductoBuscar,
     ProductoBorrar,
-    ProductoActualizar} = require('../controladores/producto.controller')
+    ProductoActualizar,
+    ProductoBuscarCat} = require('../controladores/producto.controller')
 
 router.post('/Producto/registro', ProductoResgister)
 
@@ -17,7 +18,7 @@ router.delete('/Producto/borrar/:id', ProductoBorrar)
 
 router.patch('/Producto/actualizar/:id', ProductoActualizar)
 
-// router.get('/Producto/BuscarC/:Categoria', ProductoBuscarCat)
+router.get('/Producto/BuscarC/', ProductoBuscarCat)
 
 
 module.exports = router
