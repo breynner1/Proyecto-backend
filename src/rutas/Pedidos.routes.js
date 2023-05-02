@@ -24,7 +24,7 @@ router.get('/Pedido/BuscarT',PedidoBuscarT)
 
 router.post('/Pedido/AgregarPedido', AgregarPedido)
 
-router.patch('/Pedido/Enviar/', PedidoEnviar)
+router.patch('/Pedido/Enviar', PedidoEnviar)
 
 router.delete('/Pedido/EliminarP/:id', PedidoEliminar)
 
