@@ -24,6 +24,7 @@ app.get('/', (req, res) => {
 app.use(require('./rutas/Usuarios.routes'))
 app.use(require('./rutas/Restaurante.routes'))
 app.use(require('./rutas/Producto.routes'))
+app.use(require('./rutas/Pedidos.routes'))
 
 // static files
 

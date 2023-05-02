@@ -2,26 +2,23 @@ const {Schema, model} = require("mongoose")
 
 
 
-
 const Pedido = new Schema({
 
     Restaurante:{
-        Type: int,
+        type: Schema.Types.ObjectId, ref: 'restaurantes',
         required: true
     },
     Usuario:{
-        Type: int,
-        required: true
-    },
-    Fecha:{
-        Type: Date,
+        type: Schema.Types.ObjectId, ref: 'Usuarios' ,
         required: true
     },  
     Estado:{
-        Type: int,
+        type : String, Enum: ['Creado', "Enviado", 'Aceptado', 'Recibido', 'En dirección', 'Realizado'],
         required: true
     }
-})
+},
+{ timestamps: true }
+)
 
 
-module.exports = model ("Pedido", Pedido);
+module.exports = model ("Pedidos", Pedido);

@@ -5,15 +5,15 @@ const {Schema, model} = require("mongoose")
 const Cantidad = new Schema({
 
     Producto:{
-        Type: int,
+        type: Schema.Types.ObjectId, ref: 'Producto',
         required: true
     },
     Cantidad:{
-        Type: int,
+        type: Number,
         required: true
     },
     Pedido:{
-        Type: int,
+        type: Schema.Types.ObjectId, ref: 'Pedidos',
         required: true
     }
 })

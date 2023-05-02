@@ -10,6 +10,7 @@ ProductoController.ProductoResgister = async (req, res) => {
     const { Nombre, Precio, Descripción, CategoriaR, restaurante } = req.body;
 
     const restCreador = await Restaurante.findOne({_id: restaurante}) 
+    
     if(!restCreador){
         res.status(500).send({message: 'El restaurante no existe'})
     } else {
